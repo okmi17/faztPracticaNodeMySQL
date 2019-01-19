@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Links App</title>
+    <!--google fonts-->
+   <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!--estilos css-->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!--aqui le diremos que voy a agregar el navigation.hbs no le digo que esta dentro de la carpeta partials ya que  eso lo defeni en el archivo principal index,js-->
+    {{> navigation}}
+    <!-- este archivo main se pondra el codigo html que se va a usar en todas la plantillas html por ejemplo los enlaces para llamar al framework bootstrap o fonts o cabeceras footer etc,las 3 llaves indican que ese pedazo de codigo va a cambiar para cada plantilla es decir no  es unico y no se va a aplicar para todas las plantillas -->
+    {{{body}}}
+</body>
+</html>
