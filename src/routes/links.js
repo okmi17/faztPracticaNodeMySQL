@@ -55,6 +55,32 @@ router.get('/',async(req,res)=>{ //esta consulta me devolvera todos los enlaces 
     
     
 });
+router.get('/delete/:id', async(req, res)=>{
+    //console.log(req.params.id);
+    //res.send('eliminado');
+    const {id} = req.params;
+    await pool.query('DELETE FROM links WHERE id = ?', [id]);
+    res.redirect('/links');
+});
+router.get('/edit/:id', async(req,res)=>{
+    const {id}= req.params;
+    /*console.log(id);
+    res.send('recibido');*/
+    const link= await pool.query('SELECT * FROM links WHERE id = ?',[id]);
+    //console.log(link[0]);//para que sola mente me bote un objeto y no un arreglo de objetos
+    
+    res.render('links/edit',{link: link[0]});
+})
 
-
+router.post('/edit/:id', async(req,res)=>{
+    const {id}= req.params;
+    const {title, url, description}= req.body;
+    const newLink = {
+        title,
+        url,
+        description
+    };
+    await pool.query('UPDATE links set ? WHERE id = ?',[newLink, id]);
+    res.redirect('/links');//para que vea los datos actualizados
+})
 module.exports = router;
