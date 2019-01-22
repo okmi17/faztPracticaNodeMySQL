@@ -43,6 +43,7 @@ router.post('/add', async (req, res) => {
 
     await pool.query('INSERT INTO links set ?', [nuevoLink]);
     //res.send('recibido');
+    req.flash('success','link agregado correctamente');//el primer parametro es el nombre de como uno va a guardar el mensaje y el segundo parametro es el contenido de ese mensaje, para que dicho mensaje este disponible en todas las vista este se agregara en index,js en la parte de variables globales
     res.redirect('/links');
 })
 //va solo / ya que le precede automaticamente el /links ya que lo definimos en index.js
@@ -60,6 +61,7 @@ router.get('/delete/:id', async(req, res)=>{
     //res.send('eliminado');
     const {id} = req.params;
     await pool.query('DELETE FROM links WHERE id = ?', [id]);
+    req.flash('success','enlace removido exitosamente perro!')
     res.redirect('/links');
 });
 router.get('/edit/:id', async(req,res)=>{
@@ -81,6 +83,7 @@ router.post('/edit/:id', async(req,res)=>{
         description
     };
     await pool.query('UPDATE links set ? WHERE id = ?',[newLink, id]);
+    req.flash('success','El link ha sido actualizado exitosamente');
     res.redirect('/links');//para que vea los datos actualizados
 })
 module.exports = router;
